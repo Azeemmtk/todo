@@ -1,0 +1,19 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failures/failure.dart';
+import '../entity/todo.dart';
+import '../repository/todo_repository.dart';
+
+class UpdateTodo {
+  final TodoRepository repository;
+
+  UpdateTodo(this.repository);
+
+  Future<Either<Failure, void>> call(Todo todo) async {
+
+    if (todo.title.isEmpty || todo.description.isEmpty) {
+      return Left(ValidationFailure('Title and description cannot be empty'));
+    }
+    return await repository.updateTodo(todo);
+  }
+}

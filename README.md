@@ -43,5 +43,5 @@ A simple **Todo App** built with **Flutter** following **Clean Architecture** pr
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-link>
+   git clone <https://github.com/Azeemmtk/todo.git>
    cd <repo-folder>

@@ -8,6 +8,7 @@ import 'package:todo/feature/todo/domain/entity/todo.dart';
 import 'package:todo/feature/todo/presentation/provider/bloc/todobloc/todo_bloc.dart';
 import 'package:todo/feature/todo/presentation/provider/cubit/todo_card_cubit.dart';
 import '../../presentation/widgets/add_edit_pop_up.dart';
+import 'delete_button_widget.dart';
 
 class TodoCard extends StatelessWidget {
   final String title;
@@ -110,37 +111,7 @@ class TodoCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      // Store the todo for potential undo
-                      final deletedTodo = Todo(
-                        id: id,
-                        title: title,
-                        description: subtitle,
-                        dueDate: date,
-                        isComplete: state.isCompleted,
-                      );
-                      // Dispatch delete event
-                      context.read<TodoBloc>().add(DeleteTodoEvent(id));
-                      // Show snackbar with undo option
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Task "$title" deleted'),
-                          duration: Duration(seconds: 4),
-                          action: SnackBarAction(
-                            label: 'Undo',
-                            onPressed: () {
-                              // Use a stable context to access TodoBloc
-                              // Assuming TodoBloc is provided at a higher level (e.g., in TodoHomeScreen)
-                              final todoBloc = context.read<TodoBloc>();
-                              todoBloc.add(AddTodoEvent(deletedTodo));
-                            },
-                          ),
-                        ),
-                      );
-                    },
-                    child: const Icon(Icons.delete_outline, color: Colors.grey),
-                  ),
+                  DeleteButtonWidget(title: title, id: id),
                 ],
               ),
             ),

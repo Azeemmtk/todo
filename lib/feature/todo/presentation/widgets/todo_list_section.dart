@@ -47,11 +47,11 @@ class TodoListSection extends StatelessWidget {
               );
             }
             return ListView.separated(
-              key: ValueKey(state.todos.length), // Ensure list rebuilds correctly
+              key: ValueKey(state.todos.length),
               itemBuilder: (context, index) {
                 final todo = state.todos[index];
                 return TodoCard(
-                  key: ValueKey(todo.id), // Unique key for each card
+                  key: ValueKey(todo.id),
                   title: todo.title,
                   subtitle: todo.description,
                   date: todo.dueDate,

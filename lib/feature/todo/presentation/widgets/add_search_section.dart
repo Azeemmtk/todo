@@ -54,7 +54,7 @@ class _AddSearchSectionSectionState extends State<AddSearchSectionSection> {
                             context.read<TodoBloc>().add(SearchTodoEvent(value));
                           },
                           decoration: InputDecoration(
-                            hintText: '  Search...',
+                            hintText: ' 🚀 Search...',
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
                           ),
